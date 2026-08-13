@@ -8,7 +8,7 @@
         Nessa versão do codigo(v0.1) apenas o Python 3.12
 
 . O que faz essa versão (v0.1): 
-        O usuário poderá conferir ferramentas que serão usadas na obra, organizar e salvar tamanhos de cortes e conferir quais foram cortados, e fazer orçamento em que digita os materiais, preços e no final é calculado o preço com a mão de obra.
+        O usuário poderá conferir ferramentas que serão usadas na obra, organizar e salvar tamanhos de cortes e conferir quais foram cortados, e fazer orçamento em que se digita os materiais, preços e no final é calculado o preço com a mão de obra.
 
 . Melhorias em futuras versões:
         Transformar cada funcionalidade do codigo em funçoes, para que assim o codigo trabalhe apenas na função que foi chamada.
