@@ -1,18 +1,22 @@
-while True:
-    print("\n\n\n --Sistema de gerenciamento para serralheria--\n")
-    
-    print(" Menu de opções \n")
-    
-    print(" 1. Checklist de ferramentas:")
-    print("\n 2. Calcular material e serviço:")
-    print("\n 3. Organizar cortes:")
-    print("\n 4. Sair:\n")
-    
-    print("-----------------------------------------------")
-    opção = input(" Digite o número de uma opção do menu: ")
+banco_usuarios = []
+usuarios_logados = None
 
-    # Primeira opção do menu
-    if opção == "1":
+def cadastro_usuarios():
+
+                print("\n -- Cadastro de Usuários --")
+
+       
+                nome = input("\n Insira seu nome: ")
+                
+                cpf = input(" Digite seu CPF(será seu usuario de acesso): ")
+                
+                senha = input(" Crie uma senha de acesso: ")
+
+                novo_usuario = {"nome": nome, "cpf": cpf, "senha": senha}
+                banco_usuarios.append(novo_usuario)
+
+def checklist_ferramentas():
+        
         lista_ferramentas = ["solda", "lixadeira", "furadeira", "extensão", "manuais"] # lista dos itens
         faltando = [] # variável com lista para guardar oque está faltando
 
@@ -29,46 +33,125 @@ while True:
                 itens_faltando = ", ".join(faltando) # join junta os itens faltando a frase separando com a virgula q foi definida
                 print(f"\n Pegue a(o) {itens_faltando} e coloque no carro! \n")
 
-    # Segunda opção do menu
-    elif opção == "2":
-        
+
+def calcular_material_servico():
+
         print("\n -- Calcular material e serviço --\n")
+        
         
         custo_total = 0.0 
 
         while True: # loop para inserir os nomes e preços dos mateiais
-            nomes = input("\n Nome do material: ")
-            precos = float(input("\n Valor dos materiais R$: "))
-            custo_total += precos # onde ocorre a soma dos preços
-            continuar = input("\n Inserir mais material, sim ou não? ")
-            if continuar in ["não", "nao", "n"]:
-                preco_venda = custo_total * 2 # calculo de porcentagem da mão de obra
-                print(f"\n Custo total de materiais: {custo_total:.2f}")
-                print(f" Custo de venda total: {preco_venda:.2f}\n")
-                break
-    
-    # terceira opção
-    elif opção == "3":
+                nomes = input("\n Nome do material: ")
+
+                try: 
+                        precos = float(input("\n Valor dos materiais R$: ").replace(",", "."))
+                except ValueError:
+                        print("Valor invalido, tente novamente!")
+                        continue
+                
+                custo_total += precos # onde ocorre a soma dos preços
+                continuar = input("\n Inserir mais material, sim ou não? ")
+                if continuar in ["não", "nao", "n"]:
+                        preco_venda = custo_total * 2 # calculo de porcentagem da mão de obra
+                        print(f"\n Custo total de materiais: {custo_total:.2f}")
+                        print(f" Custo de venda total: {preco_venda:.2f}\n")
+                        break
+
+def organizar_cortes():
         
         print("\n -- Organizar cortes -- ")
         
         cortes = [] 
 
         while True: # esse while é um loop para controlar os cm que o usuario ira escrever
-            cortando = input("\n Insira o tamanho em centimetros do corte atual: ")
+            try:
+                cortando = float(input("\n Insira o tamanho em centimetros do corte atual: ").replace(",", "."))
+            except ValueError:
+                print("Valor invalido, tente novamente!")
+                continue
+                            
             cortes.append(cortando) # esse append anexa os cortes do usuario na lista (cortes)
             continuar = input(" Vai continuar cortando, sim ou não? ")
 
             if continuar == "não":
-                tamanhos = ", ".join(cortes)
+                tamanhos = ", ".join(map(str, cortes))
                 print(f"\n Todos os tamanhos cortados são esses: {tamanhos}")
                 break # este break finaliza o loop quando digita 0
             
-    elif opção == "4":
+def sair_sistema():
         
         print("\n Saindo do sistema...\n")
-        break
-        
+
+def menu_principal():
+
+       while True:
+                print("\n\n\n --Sistema de gerenciamento para serralheria--\n")
+                
+                print(" Menu de opções \n")
+
+                print("\n 1. Checklist de ferramentas:")
+                print("\n 2. Calcular material e serviço:")
+                print("\n 3. Organizar cortes:")
+                print("\n 4. Sair:\n")
+
+                print("-----------------------------------------------")
+                opcao = input(" Digite o número de uma opção do menu: ")
+
+                if opcao == "1":
+                       checklist_ferramentas()
+
+                elif opcao == "2":
+                        calcular_material_servico()
+
+                elif opcao == "3":
+                        organizar_cortes()
+
+                elif opcao == "4":
+                       sair_sistema()
+                       break
+
+                else :
+                        print("\n Opção errada, tente novamente! ")    
+
+def entrar_conta():
+
        
 
-        
+              cpf = input("\n Informe seu usuário: ")
+              senha = input(" Digite a senha: ")
+              login_sucesso = False
+              for x in banco_usuarios:
+                         if cpf == x["cpf"] and senha == x["senha"]:
+                                print("\n comfirmado")
+                                usuarios_logados = x
+                                login_sucesso = True
+                                menu_principal() 
+                                break
+                                
+                         
+              if login_sucesso == False:
+                      print("\n Usuário ou senha incorreto! ")
+          
+def entrar_cadastrar():
+
+       while True:
+
+              print("\n -- Bem vindo ao Sistema para serralheria -- ")
+
+              print("\n 1. Entrar com sua conta: ")
+              print(" 2. Cadastrar: ")
+
+              opcao = input("\n Digite um número das opções acima: ")
+
+              if opcao == "1":
+                        entrar_conta()
+
+              elif opcao == "2":
+                        cadastro_usuarios()
+
+                
+                        
+entrar_cadastrar()
+
+                     
