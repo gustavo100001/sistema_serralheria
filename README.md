@@ -1,6 +1,6 @@
    -- Sistema de gerenciamento para serralheria --
 
-      Versão v0.2   -Ainda não finalizada-
+   Versão v0.2   -Ainda não finalizada-
 
 . Sobre o projeto: 
           Trata-se de um sistema que busca facilitar procedimentos de execução de trabalho em uma serralheria. 
@@ -14,7 +14,7 @@
 . Novidades no codigo:
          Cada funcionalidade agora é uma função separada, fazendo com que o codigo rode apenas a função que é chamada.
          Agora os valores inseridos em que quando se pede o preço e o tamanho em centimetros passam por validação para evitar erro.
-         Em breve nessa versão: mais valores com validação adequada para evitar erros, e mais uma funcionalidade no menu.
+         O sistema inicia pedindo login ou cadastro.
 
 . Melhorias em futuras versões:
          Dados salvos em banco de dados, com SQL .
