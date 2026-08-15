@@ -67,7 +67,7 @@ Não são utilizadas bibliotecas externas na versão atual.
 ### Clonando o projeto
 
 ```bash
-git clone https://github.com/gustavo100001/sistema-metal.git
+git clone https://github.com/gustavo100001/sistema-serralheria.git
 ```
 
 Entre na pasta do projeto:
