@@ -29,11 +29,26 @@ meus_dados = cursor.fetchall()
 for x in meus_dados:
    print(f"Pedido #{x[0]} | Cliente: {x[1]} | Serviço: {x[2]} | Valor: R$ {x[3]:.2f}")
 
-id_pedido = input(" qual id quer mudar: ")
-novo_valor = input(" Mudar preco: ")
+id_pedido = int(input(" qual id quer mudar: "))
+novo_valor = float(input(" Mudar preco: "))
 
 cursor.execute("Update orcamentos set valor = ? WHERE id = ?", (novo_valor, id_pedido))
 
+print("valor mudado")
+
 conexao.commit()
+
+id_excluir = int(input(" qual id quer excluir? "))
+cursor.execute("DELETE FROM orcamentos WHERE id = ?", (id_excluir,))
+print("id: ", id_excluir)
+
+conexao.commit()
+
+cursor.execute("SELECT * FROM orcamentos")
+
+meus_dados = cursor.fetchall()
+
+for x in meus_dados:
+   print(f"Pedido #{x[0]} | Cliente: {x[1]} | Serviço: {x[2]} | Valor: R$ {x[3]:.2f}")
 
 conexao.close()
